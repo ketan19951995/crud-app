@@ -11,10 +11,18 @@ curl --location --request POST 'http://localhost:3000/register' \
 }'
 
 
+
+
+
 Get ALL Users  API 
 
 curl --location --request GET 'http://localhost:3000/users' \
 --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldGFuQGdtYWlsLmNvbSIsImlhdCI6MTYyNzMyNTExMX0.8erzMB_txWaRTox5fXfA3qDaIfwpsQ7xgsQBr9BF6dc'
+
+
+
+
+
 
 
 
@@ -28,14 +36,30 @@ curl --location --request POST 'http://localhost:3000/login' \
 }'
 
 
+
+
+
+
+
+
+
 DelEte API 
+
 curl --location --request DELETE 'http://localhost:3000/user' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "email" : "ketan11@gmail.com"
 }'
 
-gET ALL Taks of all Users API 
+
+
+
+
+
+
+
+
+Get All Tasks of all Users API 
 
 curl --location --request GET 'http://localhost:3000/tasks' \
 --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldGFuQGdtYWlsLmNvbSIsImlhdCI6MTYyNzMyNTExMX0.8erzMB_txWaRTox5fXfA3qDaIfwpsQ7xgsQBr9BF6dc' \
