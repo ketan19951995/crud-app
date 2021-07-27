@@ -5,12 +5,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-const { saveUser, getUserByEmail, getAllUsers, deleteRecord, getAllTasks } = require('./db');
 const { MongoClient } = require("mongodb")
 const client = new MongoClient("mongodb://localhost:27017");
 
+const { saveUser, getUserByEmail, getAllUsers, deleteRecord, getAllTasks } = require('./db');
 
 app.post('/register', jsonParser, async (req, res) => {
     let user = {};
@@ -105,4 +105,6 @@ app.listen(3000, () => {
     console.log("Server is listening on port 3000");
 });
 
-module.exports = app
+module.exports = {
+    app
+}
