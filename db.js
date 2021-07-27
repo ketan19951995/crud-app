@@ -36,9 +36,19 @@ async function deleteRecord(email, client) {
 }
 
 
+async function getAllTasks(email, client) {
+     await client.connect();
+     const database = client.db("Users");
+     const collection = database.collection("tasks");
+     let query = { email }
+     let result = await collection.find(query).toArray();
+     return result;
+}
+
 module.exports = {
      saveUser,
      getUserByEmail,
      getAllUsers,
-     deleteRecord
+     deleteRecord,
+     getAllTasks
 }

@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 var jwt = require('jsonwebtoken');
 
-const { saveUser, getUserByEmail, getAllUsers , deleteRecord } = require('./db');
+const { saveUser, getUserByEmail, getAllUsers, deleteRecord, getAllTasks } = require('./db');
 const { MongoClient } = require("mongodb")
 const client = new MongoClient("mongodb://localhost:27017");
 
@@ -69,15 +69,37 @@ app.get('/users', async (req, res) => {
 })
 
 
-app.delete('/user', jsonParser ,  async (req, res) => {
+app.delete('/user', jsonParser, async (req, res) => {
     let { email } = req.body;
     let result = await deleteRecord(email, client);
-    if(result.deletedCount){
+    if (result.deletedCount) {
         res.json({ "message": "Record Deleted" });
-    }else {
+    } else {
         res.json({ "message": "No account exists with this email ID" });
     }
 });
+
+
+
+
+
+// get all task of the a particular user
+
+app.get('/tasks', async (req, res) => {
+    let token = req.headers.authorization;
+    let decoded = jwt.verify(token, 'test-123');
+    if (decoded.email) {
+        let result = await getAllTasks(decoded.email, client);
+        res.json({ "records": result });
+    }
+})
+
+
+
+
+
+
+
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
